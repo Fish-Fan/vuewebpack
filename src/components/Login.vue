@@ -1,13 +1,13 @@
 <template>
   <div class="login">
-
+    <router-link to="/">返回首页</router-link>
     <div class="input-wrap">
-      <input type="text" v-model="name">
+      <input type="text" v-model="username">
       <span v-if="error.name" class="err-msg">{{error.name}}</span>
     </div>
 
     <div class="input-wrap">
-      <input type="password" v-model="pwd">
+      <input type="password" v-model="password">
       <span v-if="error.pwd" class="err-msg">{{error.pwd}}</span>
     </div>
 
@@ -18,11 +18,13 @@
 </template>
 
 <script>
+  
+  import VueResource from 'vue-resource'
   export default {
       data () {
           return {
-              name: '',
-              pwd: '',
+              username: '',
+              password: '',
               error: {
                   name: '',
                   pwd: ''
@@ -30,29 +32,28 @@
           }
       },
       methods: {
-          check(name,pwd) {
-              if(!name) {
+          check(username,password) {
+              if(!username) {
                   this.error.name = '请输入姓名';
                   return false;
               }
 
-              if(!pwd) {
+              if(!password) {
                   this.error.pwd = '请输入密码';
                   return false;
               }
           },
 
           login() {
-              const {name,pwd,$router} = this;
-              if(!this.check(name,pwd)) return;
-
-              if(this.name == 'admin' && this.pwd == 123) {
-                  console.log("登陆成功")
-                  router.push({path: '/'})
-              } else {
-                  alert("用户名或密码错误");
+              var reqBody = {
+                  username: this.username,
+                  password: this.password
               }
-
+              this.$http.post('/api/auth/login',reqBody).then(response => {
+                  if(response.data != 'false') {
+                      $router.push("/");
+                  }
+              })
           }
       }
   }

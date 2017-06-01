@@ -1,6 +1,15 @@
 <template>
-  <div class="main">
-    <h1>{{msg}}</h1>
+  <div class="container">
+    <header>
+      <img src=".././assets/logo.png">
+      <router-link to="/login">登录</router-link>
+      <router-link to="/redirectLogin">重定向到登录</router-link>
+      <router-link to="/redirectNamedLogin">重定向到命名路由</router-link>
+      <router-link to="/user/tom/profile">/user/tom/profile</router-link>
+    </header>
+    <div class="main">
+      <h1>{{msg}}</h1>
+    </div>
   </div>
 </template>
 

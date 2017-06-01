@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-link to="/">返回首页</router-link>
-    <router-link to="/login">登录</router-link>
+    <router-view  name="view1"></router-view>
+    <router-view  name="view2"></router-view>
     <router-view></router-view>
+
   </div>
 </template>
 
@@ -21,5 +21,6 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  overflow: hidden;
 }
 </style>
