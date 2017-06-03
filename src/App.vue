@@ -23,4 +23,6 @@ export default {
   margin-top: 60px;
   overflow: hidden;
 }
+
+
 </style>

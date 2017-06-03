@@ -5,10 +5,11 @@ import Login from '@/components/Login'
 import User from '@/components/User'
 import LeftBar from '@/components/LeftBar'
 import RightBar from '@/components/RightBar'
+import UserProfile from '@/components/UserProfile'
 
 Vue.use(Router);
 
-const UserProfile = {template:'<div>Profile</div>'}
+
 //导出router实例
 export default new Router({
   routes: [
@@ -20,6 +21,12 @@ export default new Router({
         default: Main,
         view1: LeftBar,
         view2: RightBar
+      },
+      //单个路由钩子
+      beforeEnter: (to,from,next) => {
+        console.log("to->" + to.name);
+        console.log("from->" + from.path);
+        next();
       }
     },
     {

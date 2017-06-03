@@ -6,6 +6,7 @@
 import Vue from 'vue'
 import router from './router'
 import App from './App'
+import './../dist/static/css/animate.css'
 
 //当前js虽然用不到,但是后面的login.vue中的this指向该实例(当前js),所以需要引入vue-resource
 import VueResource from 'vue-resource'

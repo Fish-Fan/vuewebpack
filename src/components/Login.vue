@@ -1,20 +1,24 @@
 <template>
-  <div class="login">
-    <router-link to="/">返回首页</router-link>
-    <div class="input-wrap">
-      <input type="text" v-model="username">
-      <span v-if="error.name" class="err-msg">{{error.name}}</span>
-    </div>
+  <transition name="custom-classes-transition"
+              enter-active-class="animated tada"
+              leave-active-class="animated bounceOutRight">
+    <div class="login">
+      <router-link to="/">返回首页</router-link>
+      <div class="input-wrap">
+        <input type="text" v-model="username">
+        <span v-if="error.name" class="err-msg">{{error.name}}</span>
+      </div>
 
-    <div class="input-wrap">
-      <input type="password" v-model="password">
-      <span v-if="error.pwd" class="err-msg">{{error.pwd}}</span>
-    </div>
+      <div class="input-wrap">
+        <input type="password" v-model="password">
+        <span v-if="error.pwd" class="err-msg">{{error.pwd}}</span>
+      </div>
 
-    <div class="input-wrap">
-      <button @click="login">提交</button>
+      <div class="input-wrap">
+        <button @click="login">提交</button>
+      </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -56,6 +60,31 @@
                   }
               })
           }
+      },
+      //组件内的钩子
+        //渲染组件前被调用
+      beforeRouteEnter(to,from,next) {
+          //该周期内不可以访问组件中的this对象，访问会返回undefined
+          console.log("beforeRouteEnter钩子");
+          console.log("是否能访问组件中的this " + this);
+
+
+          next(vm => {
+              console.log("通过vm访问组件中的this");
+              console.log(vm);
+          });
+      },
+        //导航离开该组件对应路由前被调用
+      beforeRouteLeave(to,from,next) {
+          var vm = this;
+          if(!vm.check(vm.username,vm.password)) {
+              if(confirm("所填信息不完整，确认要离开吗?")) {
+                next();
+              } else {
+                next(false);
+              }
+
+          }
       }
   }
 </script>
@@ -65,4 +94,5 @@
     width: 300px;
     margin: 10% auto;
   }
+
 </style>
