@@ -6,6 +6,7 @@ import User from '@/components/User'
 import LeftBar from '@/components/LeftBar'
 import RightBar from '@/components/RightBar'
 import UserProfile from '@/components/UserProfile'
+import UserProfile1 from '@/components/UserProfile1'
 
 Vue.use(Router);
 
@@ -37,7 +38,7 @@ export default new Router({
     {
       //嵌套路由
         //动态路径匹配
-      path: '/user/:id',
+      path: '/api/user/:id',
       name: 'User',
       component: User,
       children: [
@@ -45,6 +46,10 @@ export default new Router({
           path: 'profile',
           component: UserProfile
         },
+        {
+          path: 'profile1',
+          component: UserProfile1
+        }
         // {
         //   path: 'posts',
         //   component: UserPosts
