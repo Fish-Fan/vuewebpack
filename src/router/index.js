@@ -9,9 +9,10 @@ import RightBar from '@/components/RightBar'
 Vue.use(Router);
 
 const UserProfile = {template:'<div>Profile</div>'}
-
+//导出router实例
 export default new Router({
   routes: [
+    //定义各个路径所映射到的组件,每个组件对应一个.vue文件
     {
       path: '/',
       name: 'Main',
@@ -27,6 +28,8 @@ export default new Router({
       component: Login
     },
     {
+      //嵌套路由
+        //动态路径匹配
       path: '/user/:id',
       name: 'User',
       component: User,

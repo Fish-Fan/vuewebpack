@@ -18,8 +18,8 @@
 </template>
 
 <script>
-  
-  import VueResource from 'vue-resource'
+  import router from '@/router'
+
   export default {
       data () {
           return {
@@ -50,8 +50,9 @@
                   password: this.password
               }
               this.$http.post('/api/auth/login',reqBody).then(response => {
+                  console.log(response.data);
                   if(response.data != 'false') {
-                      $router.push("/");
+                      router.push("/");
                   }
               })
           }
